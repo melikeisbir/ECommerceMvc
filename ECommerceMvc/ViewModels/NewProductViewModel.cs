@@ -1,19 +1,20 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ECommerceMvc.Entity
+namespace ECommerceMvc.ViewModels
 {
-    public class Product
+    public class NewProductViewModel : EditImageViewModel
     {
-        [Key]
+        [Required]
         public int Id { get; set; }
+        [Required]
         public string Name { get; set; }
+        [Required]
         public string Description { get; set; }
+        [Required]
         public double Price { get; set; }
+        [Required]
         public int Stock { get; set; }
         public string ProductImage { get; set; }
-        public bool IsApproved { get; set; } //true ise bu ürün satışta
-
-        //public int CategoryId { get; set; } //category tablosundaki bir idye karşılık gelir
-        //public Category Category { get; set; }
+        public bool IsApproved { get; set; }
     }
 }

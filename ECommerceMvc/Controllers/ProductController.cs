@@ -1,14 +1,27 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using ECommerceMvc.Entity;
+using ECommerceMvc.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace ECommerceMvc.Controllers
 {
     public class ProductController : Controller
     {
-        public IActionResult Index()
+        public Context _context;
+        public IWebHostEnvironment _environment;
+
+        public ProductController(Context context, IWebHostEnvironment environment)
         {
-            return View();
+            _context = context;
+            _environment = environment;
         }
-        public IActionResult Detail()
+        public async Task<IActionResult> Index()
+        {
+            List<Product> urunListesi = new List<Product>();
+            urunListesi = await _context.Products.ToListAsync(); //select * from Kitap 
+            return View(urunListesi);
+        }
+            public IActionResult Detail()
         {
             return View();
         }
