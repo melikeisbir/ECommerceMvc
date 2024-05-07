@@ -98,29 +98,31 @@ namespace ECommerceMvc.Controllers
         public async Task<IActionResult> Edit(int id, NewProductViewModel model)
         {
             var urun = await _context.Products.FindAsync(model.Id);
-            urun.Name = model.Name;
-            urun.Description = model.Description;
-            urun.Price = model.Price;
-            urun.Stock = model.Stock;
+            //urun.Name = model.Name;
+            //urun.Description = model.Description;
+            //urun.Price = model.Price;
+            //urun.Stock = model.Stock;
             //düzenleme sayfasında bir başka resim seçtiysem kontrolünü yapmam gerekiyro
             if (model.ProductPicture != null)
             {
                 //resmini değiştirmek istediğim ürünün database deki ProductPicture kolonundaki adına göre
                 // git wwwroot klasörü altındaki Uploads klasöründeki ilgili resmi bul ve sil
-                string filePath = Path.Combine(_environment.WebRootPath, "Uploads", urun.ProductImage);
-                System.IO.File.Delete(filePath);
+                //string filePath = Path.Combine(_environment.WebRootPath, "Uploads", urun.ProductImage);
+                //System.IO.File.Delete(filePath);
 
 
-                Product guncellencekUrun = new Product();
+                //Product guncellencekUrun = new Product();
 
-                guncellencekUrun.Id = model.Id;
-                guncellencekUrun.Description = model.Description;
-                guncellencekUrun.Price = model.Price;
-                guncellencekUrun.Stock = model.Stock;
+                //urun.Id = model.Id;
+                urun.Name = model.Name;
+                urun.Description = model.Description;
+                urun.Price = model.Price;
+                urun.Stock = model.Stock;
                 string guncellenenYuklenenResimAdi = ResimYukle(model);
-                guncellencekUrun.Name = guncellenenYuklenenResimAdi;
+                urun.ProductImage = guncellenenYuklenenResimAdi;
 
-                _context.Entry(guncellencekUrun).State = EntityState.Modified;
+                //_context.Entry(guncellencekUrun).State = EntityState.Modified;
+                _context.Products.Update(urun);
                 try
                 {
                     await _context.SaveChangesAsync(); //update 
@@ -158,15 +160,15 @@ namespace ECommerceMvc.Controllers
                 return NotFound();
             }
 
-            var urunDetay = await _context.Products.FindAsync(id);
+            var urunD = await _context.Products.FindAsync(id);
 
             NewProductViewModel productViewModel = new()
             {
-                Name = urunDetay.Name,
-                Description = urunDetay.Description,
-                Price = urunDetay.Price,
-                Stock = urunDetay.Stock,
-                ProductImage = urunDetay.ProductImage
+                Name = urunD.Name,
+                Description = urunD.Description,
+                Price = urunD.Price,
+                Stock = urunD.Stock,
+                ProductImage = urunD.ProductImage
             };
             return View(productViewModel);
         }
