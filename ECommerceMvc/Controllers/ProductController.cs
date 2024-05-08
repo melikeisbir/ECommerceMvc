@@ -162,7 +162,7 @@ namespace ECommerceMvc.Controllers
 
             var urunD = await _context.Products.FindAsync(id);
 
-            NewProductViewModel productViewModel = new()
+            Product product = new()
             {
                 Name = urunD.Name,
                 Description = urunD.Description,
@@ -170,7 +170,7 @@ namespace ECommerceMvc.Controllers
                 Stock = urunD.Stock,
                 ProductImage = urunD.ProductImage
             };
-            return View(productViewModel);
+            return View(product);
         }
     }
 }
