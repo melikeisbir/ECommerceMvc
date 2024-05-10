@@ -1,15 +1,14 @@
-﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+﻿using ECommerceMvc.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace ECommerceMvc.Entity
+namespace ECommerceMvc.Data
 {
-    public class Context : IdentityDbContext<Admin>
+    public class Context : DbContext
     {
         public Context(DbContextOptions<Context> options) : base(options)
         {
 
         }
         public DbSet<Product> Products { get; set; }
-        public DbSet<Admin> Admins { get; set; }
     }
 }

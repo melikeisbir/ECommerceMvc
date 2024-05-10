@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ECommerceMvc.Entity
+namespace ECommerceMvc.Models
 {
     public class Product
     {
@@ -11,9 +11,5 @@ namespace ECommerceMvc.Entity
         public double Price { get; set; }
         public int Stock { get; set; }
         public string ProductImage { get; set; }
-        public bool IsApproved { get; set; } //true ise bu ürün satışta
-
-        //public int CategoryId { get; set; } //category tablosundaki bir idye karşılık gelir
-        //public Category Category { get; set; }
     }
 }
