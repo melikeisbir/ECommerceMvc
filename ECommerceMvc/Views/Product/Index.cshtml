@@ -1,6 +1,7 @@
 ﻿@model IEnumerable<ECommerceMvc.Models.Product>
 @{
     ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 <h1>Index</h1>
@@ -53,7 +54,7 @@
                     <a asp-action="Edit" asp-route-id="@item.Id">Düzenle</a> |
                     <a asp-action="Details" asp-route-id="@item.Id">Detay</a> |
                     <a asp-action="Delete" asp-route-id="@item.Id" onclick="return confirm('Silmek istediğinize emin misiniz?')">Ürünü Sil</a> |
-                    <a asp-action="Sepet" asp-route-id="@item.Id">Sepete Ekle</a>
+                    <a asp-action="/Card/Add" asp-route-id="@item.Id">Sepet</a>
                 </td>
             </tr>
         }
