@@ -9,7 +9,7 @@ namespace ECommerceMvc.Oturum
         {
             session.SetString(key, JsonConvert.SerializeObject(value)); //veriyi json formatına çevir
         }
-        public static T GetJson<T>(ISession session, string key) //saklanann veriyi kullanabilmek için
+        public static T GetJson<T>(this ISession session, string key) //saklanann veriyi kullanabilmek için
         { //veriyi T tipinde içeriye al
             var sessionData = session.GetString(key);
             return sessionData == null ? default(T):JsonConvert.DeserializeObject<T>(sessionData);//boşsa veriyi geri gönder boş değilse objeyi nesne olarak dondur
