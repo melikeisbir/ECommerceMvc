@@ -62,5 +62,25 @@ namespace ECommerceMvc.Controllers
             TempData["Mesaj"] = "Ürün sepetten silindi";
             return RedirectToAction("Index");
         }
+        public async Task<IActionResult> Remove(int id)
+        {
+            List<CardItem> card = HttpContext.Session.GetJson<List<CardItem>>("Card");
+            card.RemoveAll(c=>c.ProductId == id);
+            if(card.Count > 0)
+            {
+                HttpContext.Session.Remove("Card");
+            }
+            else
+            { //sıfırdan küçükse card değerini ata
+                HttpContext.Session.SetJson("Card", card);
+            }
+            TempData["Mesaj"] = "Ürün sepeti silindi";
+            return RedirectToAction("Index");
+        }
+        public async Task<IActionResult> Clear()
+        {
+            HttpContext.Session.Remove("Card");//card anahtarını sil
+            return RedirectToAction("Index");
+        }
     }
 }
