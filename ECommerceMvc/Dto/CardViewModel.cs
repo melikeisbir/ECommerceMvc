@@ -1,6 +1,6 @@
 ﻿using ECommerceMvc.Models;
 
-namespace ECommerceMvc.Dto
+namespace ECommerceMvc.Dto //data transfer object
 {
     public class CardViewModel
     {
