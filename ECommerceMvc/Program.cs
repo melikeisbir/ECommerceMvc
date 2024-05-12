@@ -1,4 +1,5 @@
 using ECommerceMvc.Data;
+using ECommerceMvc.Models;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,7 +13,7 @@ builder.Services.AddSession(options =>
     options.IdleTimeout = TimeSpan.FromSeconds(30); //sessionda 30dklýk kalýcý
     options.Cookie.IsEssential = true; 
 });
-
+builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<Context>();
 
 var app = builder.Build();
 

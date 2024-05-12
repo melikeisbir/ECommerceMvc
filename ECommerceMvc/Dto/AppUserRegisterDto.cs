@@ -22,7 +22,9 @@ namespace ECommerceMvc.Dto
 
         [Display(Name = "Şifreniz")]
         [Required(ErrorMessage = "Şifreyi boş geçemezsiniz.")]
-        public int Password { get; set; }
-        public int ConfirmPassword { get; set; }
+        public string Password { get; set; }
+        [Display(Name = "Şifreniz")]
+        [Required(ErrorMessage = "Şifreyi tekrar giriniz.")]
+        public string ConfirmPassword { get; set; }
     }
 }
