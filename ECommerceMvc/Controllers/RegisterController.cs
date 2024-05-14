@@ -27,7 +27,8 @@ namespace ECommerceMvc.Controllers
                 FirstName = appUserRegisterDto.FirstName,
                 LastName = appUserRegisterDto.LastName,
                 UserName = appUserRegisterDto.UserName,
-                Email = appUserRegisterDto.Email
+                Email = appUserRegisterDto.Email,
+                Password = appUserRegisterDto.Password,
             };
 
             if (appUserRegisterDto.Password == appUserRegisterDto.ConfirmPassword)

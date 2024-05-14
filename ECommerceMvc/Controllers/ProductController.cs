@@ -1,6 +1,7 @@
 ﻿using ECommerceMvc.Data;
 using ECommerceMvc.Models;
 using ECommerceMvc.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -22,11 +23,12 @@ namespace ECommerceMvc.Controllers
             urunListesi = await _context.Products.ToListAsync();
             return View(urunListesi);
         }
+        [Authorize]
         public IActionResult Create()
         {
             return View();
         }
-
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> Create(NewProductViewModel model)
         {
@@ -52,6 +54,7 @@ namespace ECommerceMvc.Controllers
             }
             return RedirectToAction(nameof(Index));
         }
+        [Authorize]
         private string ResimYukle(NewProductViewModel model)
         {
             string dosyaAdi = "";
@@ -74,6 +77,7 @@ namespace ECommerceMvc.Controllers
             }
             return dosyaAdi;
         }
+        [Authorize]
         public async Task<ActionResult> Edit(int? id)
         {
             if (id == null)
@@ -93,6 +97,7 @@ namespace ECommerceMvc.Controllers
             };
             return View(productViewModel);
         }
+        [Authorize]
 
         [HttpPost]
         public async Task<IActionResult> Edit(int id, NewProductViewModel model)
@@ -136,6 +141,7 @@ namespace ECommerceMvc.Controllers
             }
             return RedirectToAction("Index");
         }
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
