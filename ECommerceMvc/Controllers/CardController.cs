@@ -82,5 +82,9 @@ namespace ECommerceMvc.Controllers
             HttpContext.Session.Remove("Card");//card anahtarını sil
             return RedirectToAction("Index");
         }
+        public async Task<IActionResult> Sepet()
+        {
+            return View();
+        }
     }
 }
